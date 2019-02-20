@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -62,6 +63,8 @@ class ProductController extends Controller
 
         $product->save();
 
+        Session::flash('success','Product created successfully');
+
         return redirect()->route('products.index');
     }
 
@@ -119,6 +122,8 @@ class ProductController extends Controller
 
         $product->save();
 
+        Session::flash('success','Product updated');
+
         return redirect()->route('products.index');
     }
 
@@ -131,8 +136,14 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
+
+        if(file_exists($product->image)){
+            unlink($product->image);
+        }
+
         $product->delete();
-        
+
+        Session::flash('success','Product deleted');        
         return redirect()->back();
     }
 }

@@ -1,0 +1,1 @@
+///<reference path='/home/mosaab/.vscode/extensions/bespokify.beau-vscode-0.1.10/data/docs/beau.d.ts'/>

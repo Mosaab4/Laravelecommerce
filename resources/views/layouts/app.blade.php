@@ -103,6 +103,13 @@
 
 
                 <div class="col-md-8">
+
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
+
                     @if($errors->count()>0)
                         <ul class="list-group-item text-danger">
                             @foreach($errors->all() as $error)
@@ -111,6 +118,7 @@
                         </ul>
                         <br>
                     @endif
+                
 
                     @yield('content')
                 </div>
